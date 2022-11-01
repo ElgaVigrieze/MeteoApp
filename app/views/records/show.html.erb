@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Station:</strong>
+  <%= @record.station_id %>
+</p>
+
+<p>
+  <strong>Parameter:</strong>
+  <%= @record.parameter_id %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @record.time %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @record.value %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>

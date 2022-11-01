@@ -1,0 +1,11 @@
+ABBREVIATION;EN_DESCRIPTION;LV_DESCRIPTION;SCALE;LOWER_LIMIT;UPPER_LIMIT;MEASUREMENT_UNIT;;;;;;
+HPRAB;Precipitation amount, hourly sum;Nokrišņu daudzums, stundas summa;0.1;0;250;mm;;;;;;
+HWDMX;Wind direction, hourly maximum speed;Vēja virziens, stundas maksimālā ātruma;1;0;360;°;;;;;;
+HWSMX;Wind speed, hourly maximum;Vēja brāzma, stundas maksimālā;0.1;0;60;m/s;;;;;;
+PRSS;Atmospheric pres. at station level, actual QFE;Atmosfēras spiediens stacijas līmenī fakt. QFE;0.1;900;1065;hPa;;;;;;
+RLH;Relative;humidity,;actual;Relatīvais;mitrums,;faktiskais;1;10;100;%;;
+SNOWA;Snow;depth,;actual;Sniega;segas;biezums,;faktiskais;1;0;150;cm;
+TDRY;Air;temperature,;actual;Gaisa;temperatūra,;faktiskā;0.1;-50;50;°C;;
+VSBA;Visibility;meteorological,;actual;Redzamība;meteoroloģiskā,;faktiskā;1;0;75000;m;;
+WNDD10;Wind;direction,;actual;(50-59M);Vēja;virziens,;faktiskais;(50-59M);1;0;999;°
+WNS10;Wind;speed,;actual;(50-59M);Vēja;ātrums,;faktiskais;(50-59M);0.1;0;60;m/s

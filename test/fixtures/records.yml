@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station: one
+  parameter: one
+  time: 2022-10-31 15:22:39
+  value: 9.99
+
+two:
+  station: two
+  parameter: two
+  time: 2022-10-31 15:22:39
+  value: 9.99
