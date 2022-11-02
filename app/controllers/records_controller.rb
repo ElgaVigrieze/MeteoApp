@@ -1,34 +1,28 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /records or /records.json
   def index
     @records = Record.all
     @parameters = Parameter.all
+    # @result = search
+    
   end
 
-  def get_values(month,parameter_id)
-    value_sum = 0
-    count = 0
-    # ::Record.all.each do |record|
-    @records.each do |record|
-      if record.time.month == month
-          if record.parameter_id == parameter_id
-            value_sum += record.value
-            count += 1
-      end
-      end
-    end
-    if count ==0
-      return "n/a"
-    else
-      return value_sum/count
-    end
+
+
+  def search
+     par = params[:parameter].reject!(&:empty?)
+    @result = Parameter.where("id": par)
+    #  redirect_to :back
   end
+
 
   # GET /records/1 or /records/1.json
   def show
   end
+
 
   # GET /records/new
   def new
@@ -39,8 +33,7 @@ class RecordsController < ApplicationController
   def edit
   end
 
-  def parameter
-  end
+
 
   # POST /records or /records.json
   def create
@@ -80,10 +73,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def table1
-      @parameters = Parameter.all
-  end
-
 
 
   private
@@ -96,6 +85,5 @@ class RecordsController < ApplicationController
     def record_params
       params.require(:record).permit(:station_id, :parameter_id, :time, :value)
     end
-
 
 end

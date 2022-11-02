@@ -1,29 +1,30 @@
+<h1>Welcome to MeteoApp</h1>
 
-<table>
-  <tr>
-    <td></td>
-    <th scope="col">January</th>
-    <th scope="col">February</th>
-    <th scope="col">March</th>
-    <th scope="col">April</th>
-    <th scope="col">May</th>
-    <th scope="col">June</th>
-    <th scope="col">Average</th>
-    <th scope="col">Min</th>
-    <th scope="col">Max</th>
-  </tr>
-  <% @parameters.each do |parameter| %>
-      <tr>
-    <th scope="row"><%= parameter.name %><%= link_to 'Parameters', parameter_path %></th>
-    <td> <%= DatabaseServices::Record.new.get_values(1,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(2,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(3,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(4,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(5,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(6,parameter.id) %> </td>
-    <td> <%= DatabaseServices::Record.new.get_values(6,parameter.id) %> </td>
-  </tr>
-  <% end %> 
-</table>
+<form action="/search" method="post">
+<%= form_with do |form| %>
+
+<h3>Filter by parameter</h3>
+<%= form.select "parameter", options_from_collection_for_select(Parameter.all, :id, :name), {},{ :multiple => true }%>
+
+
+  <div onclick="TestsFunction()">
+    <%= form.submit %> </div>
+    
+
+<% end %>
+
+</form>
+
+
+<%# <div id="data" style="display:none"> <%= render 'search', result: @result %>
+<%# </div>  %>
+
+  <script>
+      function TestsFunction() {
+          var T = document.getElementById("data");
+          T.style.display = "block";  // <-- Set it to block
+      }
+
+  </script>
 
 

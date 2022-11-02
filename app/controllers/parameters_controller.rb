@@ -4,6 +4,7 @@ class ParametersController < ApplicationController
   # GET /parameters or /parameters.json
   def index
     @parameters = Parameter.all
+    @months = Date::MONTHNAMES
   end
 
   # GET /parameters/1 or /parameters/1.json

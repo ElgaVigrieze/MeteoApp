@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Station:</strong>
-  <%= @record.station_id %>
-</p>
 
-<p>
-  <strong>Parameter:</strong>
-  <%= @record.parameter_id %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @record.time %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @record.value %>
-</p>
-
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<table>
+  <tr>
+    <td></td>
+    <th scope="col">January</th>
+    <th scope="col">February</th>
+    <th scope="col">March</th>
+    <th scope="col">April</th>
+    <th scope="col">May</th>
+    <th scope="col">June</th>
+    <th scope="col">Average</th>
+    <th scope="col">Min</th>
+    <th scope="col">Max</th>
+  </tr>
+  <% @parameters.each do |parameter| %>
+      <tr>
+    <th scope="row"><%= parameter.name %><%= link_to 'Parameter', parameter_path %></th>
+    <td> <%= DatabaseServices::Record.new.get_values(1,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(2,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(3,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(4,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(5,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(6,parameter.id) %> </td>
+    <td> <%= DatabaseServices::Record.new.get_values(6,parameter.id) %> </td>
+  </tr>
+  <% end %> 
+</table>

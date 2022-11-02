@@ -2,24 +2,22 @@ module DatabaseServices
   class Record
 
     def initialize
+      # @records = ActiveRecords::Records.all
     end
 
     def get_values(month,parameter_id)
       value_sum = 0
       count = 0
-      
-      ::Record.all.each do |record|
-        if record.time.month == month
-            if record.parameter_id == parameter_id
-              value_sum += record.value
-              count += 1
-        end
-        end
+      ::Record.all.where("parameter_id": parameter_id).each do |r|
+        if r.time.month == month
+          value_sum += r.value
+          count += 1
       end
+    end
       if count ==0
-        return "n/a"
+        "n/a"
       else
-        return value_sum/count
+        value_sum/count
       end
     end
 

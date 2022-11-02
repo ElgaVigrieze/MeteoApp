@@ -26,7 +26,9 @@ module Loaders
 
     def load!
       ActiveRecord::Base.transaction do
+        binding.pry
         delete_records
+        binding.pry
         save_records
       end
 
@@ -63,7 +65,6 @@ module Loaders
           time: record[:time],
           value: record[:value]
         )
-
         record.save!
       end
     end

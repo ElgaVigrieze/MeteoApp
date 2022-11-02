@@ -47,7 +47,8 @@ module WebServices
     end
 
     def url
-      @url ||= "https://data.gov.lv/dati/api/3/action/datastore_search?resource_id=ecc62e27-2071-483c-bca9-5e53d979faa8&limit=3000000"
+      # @url ||= "https://data.gov.lv/dati/api/3/action/datastore_search?resource_id=ecc62e27-2071-483c-bca9-5e53d979faa8&limit=10000"
+      @url ||="https://data.gov.lv/dati/api/3/action/datastore_search?resource_id=ecc62e27-2071-483c-bca9-5e53d979faa8&limit=500000"
     end
 
     def xml_document(content)
