@@ -8,6 +8,8 @@ class StationsController < ApplicationController
 
   # GET /stations/1 or /stations/1.json
   def show
+    @stations = Station.all
+
   end
 
   # GET /stations/new

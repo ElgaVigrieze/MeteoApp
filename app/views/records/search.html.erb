@@ -1,34 +1,25 @@
 
-
  <table>
-  <tr>
-    <td></td>
-    <th scope="col">January</th>
-    <th scope="col">February</th>
-    <th scope="col">March</th>
-    <th scope="col">April</th>
-    <th scope="col">May</th>
-    <th scope="col">June</th>
-    <th scope="col">Average</th>
-    <th scope="col">Min</th>
-    <th scope="col">Max</th>
-  </tr>
+   <tr>
+     <td></td>
+     <% @months.each do |m| %>
+       <th scope="col"><%= m %></th>
+     <% end %>
+     <th scope="col">Average</th>
+     <th scope="col">Min</th>
+     <th scope="col">Max</th>
+   </tr>
   <% @result.each do |p| %>
       <tr>
-    <th scope="row"><%= p.name %></th>
-    <td> <%= Record.new.get_values(1,p.id) %> </td>
-        <td> <%= Record.new.get_values(2,p.id) %> </td>
-        <td> <%= Record.new.get_values(3,p.id) %> </td>
-        <td> <%= Record.new.get_values(4,p.id) %> </td>
-        <td> <%= Record.new.get_values(5,p.id) %> </td>
-        <td> <%= Record.new.get_values(6,p.id) %> </td>
+    <th scope="row"> <%= link_to p.name , p %></th>
+        <% @months_n.each do |m| %>
+    <td> <%= Record.new.get_values(m,p.id) %> </td>
+        <% end %>
         <td> <%= Record.new.get_values_average(p.id) %> </td>
         <td> <%= Record.new.get_value_min(p.id) %> </td>
         <td> <%= Record.new.get_value_max(p.id) %> </td>
-
-
-
-
   </tr>
   <% end %> 
 </table>
+
+

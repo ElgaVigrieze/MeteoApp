@@ -4,11 +4,22 @@ class ParametersController < ApplicationController
   # GET /parameters or /parameters.json
   def index
     @parameters = Parameter.all
-    @months = Date::MONTHNAMES
+
   end
 
+  def search
+    par = params[:station].reject!(&:empty?)
+    @result = Station.where("id": par)
+    @months = Date::ABBR_MONTHNAMES.drop(1)
+    @months_n = (1..12).to_a
+  end
   # GET /parameters/1 or /parameters/1.json
   def show
+    @parameter = Parameter.find(params[:id])
+    @stations = Station.all
+    @months = Date::ABBR_MONTHNAMES.drop(1)
+    @months_n = (1..12).to_a
+
   end
 
   # GET /parameters/new

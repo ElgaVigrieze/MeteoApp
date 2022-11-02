@@ -16,8 +16,14 @@ gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 gem 'csv', '~> 3.2', '>= 3.2.5'
+gem 'googlecharts', '~> 1.6', '>= 1.6.12'
+gem 'chart-js-rails', '~> 0.1.7'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+gem 'groupdate', '~> 2.5', '>= 2.5.2'
+
+gem 'chartkick', '~> 4.2', '>= 4.2.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

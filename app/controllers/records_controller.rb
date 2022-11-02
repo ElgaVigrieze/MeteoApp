@@ -15,7 +15,8 @@ class RecordsController < ApplicationController
   def search
      par = params[:parameter].reject!(&:empty?)
     @result = Parameter.where("id": par)
-    #  redirect_to :back
+     @months = Date::ABBR_MONTHNAMES.drop(1)
+     @months_n = (1..12).to_a
   end
 
 

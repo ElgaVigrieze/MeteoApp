@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :stations
 
   post '/search', to: 'records#search'
+  post '/parameters/:id', to: 'parameters#search'
 
 
 
