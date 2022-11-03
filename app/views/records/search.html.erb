@@ -9,7 +9,7 @@
      <th scope="col">Min</th>
      <th scope="col">Max</th>
    </tr>
-  <% @result.each do |p| %>
+  <% @parameters.each do |p| %>
       <tr>
     <th scope="row"> <%= link_to p.name , p %></th>
         <% @months_n.each do |m| %>
@@ -21,5 +21,6 @@
   </tr>
   <% end %> 
 </table>
+
 
 

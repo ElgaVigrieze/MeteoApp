@@ -1,30 +1,55 @@
 <h1>Welcome to MeteoApp</h1>
 
-<form action="/search" method="post">
 <%= form_with do |form| %>
 
 <h3>Filter by parameter</h3>
 <%= form.select "parameter", options_from_collection_for_select(Parameter.all, :id, :name), {},{ :multiple => true }%>
 
 
-  <div onclick="TestsFunction()">
+  <div onclick="showTable()">
     <%= form.submit %> </div>
     
 
 <% end %>
 
-</form>
 
+<div id="data" style="display:none">
 
-<%# <div id="data" style="display:none"> <%= render 'search', result: @result %>
-<%# </div>  %>
+ <table>
+   <tr>
+     <td></td>
+     <% @months.each do |m| %>
+       <th scope="col"><%= m %></th>
+     <% end %>
+     <th scope="col">Average</th>
+     <th scope="col">Min</th>
+     <th scope="col">Max</th>
+   </tr>
+  <% @parameters.each do |p| %>
+      <tr>
+    <th scope="row"> <%= link_to p.name , p %></th>
+        <% @months_n.each do |m| %>
+    <td> <%= Record.new.get_values(m,p.id) %> </td>
+        <% end %>
+        <td> <%= Record.new.get_values_average(p.id) %> </td>
+        <td> <%= Record.new.get_value_min(p.id) %> </td>
+        <td> <%= Record.new.get_value_max(p.id) %> </td>
+  </tr>
+  <% end %> 
+
+</table>
+
+</div> 
 
   <script>
-      function TestsFunction() {
+      function showTable() {
           var T = document.getElementById("data");
-          T.style.display = "block";  // <-- Set it to block
+          T.style.display = "block";  
       }
 
   </script>
+
+
+  
 
 

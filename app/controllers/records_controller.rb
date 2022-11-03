@@ -6,15 +6,15 @@ class RecordsController < ApplicationController
   def index
     @records = Record.all
     @parameters = Parameter.all
-    # @result = search
+    @months = Date::ABBR_MONTHNAMES.drop(1)
+    @months_n = (1..12).to_a
     
   end
 
 
-
   def search
      par = params[:parameter].reject!(&:empty?)
-    @result = Parameter.where("id": par)
+     @parameters = Parameter.where("id": par)
      @months = Date::ABBR_MONTHNAMES.drop(1)
      @months_n = (1..12).to_a
   end
@@ -38,17 +38,17 @@ class RecordsController < ApplicationController
 
   # POST /records or /records.json
   def create
-    @record = Record.new(record_params)
+    # @record = Record.new(record_params)
 
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to record_url(@record), notice: "Record was successfully created." }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @record.save
+    #     format.html { redirect_to record_url(@record), notice: "Record was successfully created." }
+    #     format.json { render :show, status: :created, location: @record }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @record.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /records/1 or /records/1.json

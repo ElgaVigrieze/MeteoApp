@@ -9,3 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 import "@hotwired/turbo-rails"
 
+import "bootstrap"
+import "../stylesheets/application"
+

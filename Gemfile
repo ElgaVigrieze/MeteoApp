@@ -21,6 +21,8 @@ gem 'chart-js-rails', '~> 0.1.7'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
+gem 'jquery-rails', '~> 4.4'
+
 gem 'groupdate', '~> 2.5', '>= 2.5.2'
 
 gem 'chartkick', '~> 4.2', '>= 4.2.1'
