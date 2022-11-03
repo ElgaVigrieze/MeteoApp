@@ -60,6 +60,7 @@
     <orderEntry type="library" scope="PROVIDED" name="groupdate (v2.5.2, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.12.0, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.11.5, ruby-3.0.4-p208) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.5.0, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.5.1, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.19.0, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, ruby-3.0.4-p208) [gem]" level="application" />
@@ -109,6 +110,7 @@
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, ruby-3.0.4-p208) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.6.2, ruby-3.0.4-p208) [gem]" level="application" />
+    <orderEntry type="library" name="loader" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

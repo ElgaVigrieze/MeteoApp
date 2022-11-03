@@ -1,0 +1,22 @@
+
+<table class="content-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Measuring unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parameters.each do |p| %>
+      <tr>
+        <td><%= link_to p.name , p %></td>
+        <td><%= p.measuring_unit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

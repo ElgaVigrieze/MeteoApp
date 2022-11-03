@@ -4,11 +4,14 @@ class StationsController < ApplicationController
   # GET /stations or /stations.json
   def index
     @stations = Station.all
+
   end
 
   # GET /stations/1 or /stations/1.json
   def show
     @stations = Station.all
+    @months = Date::ABBR_MONTHNAMES.drop(1)
+
 
   end
 
@@ -28,7 +31,7 @@ class StationsController < ApplicationController
     respond_to do |format|
       if @station.save
         format.html { redirect_to station_url(@station), notice: "Station was successfully created." }
-        format.json { render :show, status: :created, location: @station }
+        format.json { render :fun, status: :created, location: @station }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @station.errors, status: :unprocessable_entity }
@@ -41,7 +44,7 @@ class StationsController < ApplicationController
     respond_to do |format|
       if @station.update(station_params)
         format.html { redirect_to station_url(@station), notice: "Station was successfully updated." }
-        format.json { render :show, status: :ok, location: @station }
+        format.json { render :fun, status: :ok, location: @station }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @station.errors, status: :unprocessable_entity }

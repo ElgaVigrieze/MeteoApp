@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   resources :parameters
   resources :stations
 
-  post '/records', to: 'records#search'
+
+  post '/overview', to: 'records#search'
   post '/parameters/:id', to: 'parameters#search'
+  get '/fun', to: 'records#fun'
+  get '/overview', to: 'records#overview'
+  root to: "records#index"
 
 
 

@@ -1,0 +1,124 @@
+<h1>Selection of Top 3 Whether Stations per Category</h1>
+<div class="container">
+
+<table class="content-table-3" style="width:100%">
+  <tr>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Warmest</h3>
+        </summary>
+        <% @warm.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+    <td style="width:30%">
+    <details>
+      <summary>
+        <h3 >Top 3 Rainiest </h3>
+      </summary>
+      <% @rainy.each do |s| %>
+        <li>
+          <%= s %>
+      <% end %>
+      </li>
+    </details>
+    </td>
+    <td style="width:30%">
+    <details>
+      <summary>
+        <h3 >Top 3 Windiest </h3>
+      </summary>
+      <% @windy.each do |s| %>
+        <li>
+          <%= s %>
+      <% end %>
+      </li>
+    </details>
+    </td>
+  </tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Most Snow-Covered</h3>
+        </summary>
+        <% @snowy.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Most Humid </h3>
+        </summary>
+        <% @humid.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Most Pressured :) </h3>
+        </summary>
+        <% @pressure.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Most Chill, Literally</h3>
+        </summary>
+        <% @cold.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Most Dry </h3>
+        </summary>
+        <% @dry.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+    <td style="width:30%">
+      <details>
+        <summary>
+          <h3 >Top 3 Least Pressure </h3>
+        </summary>
+        <% @less_pressure.each do |s| %>
+          <li>
+            <%= s %>
+        <% end %>
+        </li>
+      </details>
+    </td>
+  </tr>
+
+</table>
+</div>

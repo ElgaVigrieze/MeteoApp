@@ -23,7 +23,7 @@ class StationsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to station_url(Station.last)
   end
 
-  test "should show station" do
+  test "should fun station" do
     get station_url(@station)
     assert_response :success
   end

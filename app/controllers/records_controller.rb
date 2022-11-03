@@ -4,13 +4,15 @@ class RecordsController < ApplicationController
 
   # GET /records or /records.json
   def index
+  end
+
+  def overview
     @records = Record.all
     @parameters = Parameter.all
     @months = Date::ABBR_MONTHNAMES.drop(1)
     @months_n = (1..12).to_a
-    
-  end
 
+  end
 
   def search
      par = params[:parameter].reject!(&:empty?)
@@ -21,8 +23,20 @@ class RecordsController < ApplicationController
 
 
   # GET /records/1 or /records/1.json
-  def show
+  def fun
+    @warm = find_top(9)
+    @rainy = find_top(3)
+    @windy = find_top(5)
+    @snowy = find_top(8)
+    @humid = find_top(7)
+    @pressure = find_top(6)
+    @cold = find_bottom(9)
+    @dry= find_bottom(3)
+    @less_pressure = find_bottom(6)
+
+
   end
+
 
 
   # GET /records/new
@@ -38,17 +52,6 @@ class RecordsController < ApplicationController
 
   # POST /records or /records.json
   def create
-    # @record = Record.new(record_params)
-
-    # respond_to do |format|
-    #   if @record.save
-    #     format.html { redirect_to record_url(@record), notice: "Record was successfully created." }
-    #     format.json { render :show, status: :created, location: @record }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @record.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /records/1 or /records/1.json
@@ -56,7 +59,7 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.update(record_params)
         format.html { redirect_to record_url(@record), notice: "Record was successfully updated." }
-        format.json { render :show, status: :ok, location: @record }
+        format.json { render :fun, status: :ok, location: @record }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -74,6 +77,18 @@ class RecordsController < ApplicationController
     end
   end
 
+  def get_values(month,parameter_id)
+    data = Record.where("parameter_id": parameter_id).where('EXTRACT(MONTH FROM time) = ?', month)
+    count = data.count
+    value_sum = data.sum(:value)
+    if count ==0
+      "n/a"
+    else
+      BigDecimal(value_sum/count).round(2)
+    end
+  end
+
+
 
 
   private
@@ -86,5 +101,38 @@ class RecordsController < ApplicationController
     def record_params
       params.require(:record).permit(:station_id, :parameter_id, :time, :value)
     end
+
+
+  def find_top(parameter_id)
+    value = Hash.new
+    for i in 5..29
+      value[i]=BigDecimal(Record.where("station_id": i, "parameter_id": parameter_id).average("value")).round(2)
+    end
+    names=Array.new
+    ids = Hash[value.sort_by { |k, v| -v }[0..2]].keys
+    ids.each do|j|
+      names.append(Station.find(j).name)
+    end
+    names
+  end
+
+  def find_bottom(parameter_id)
+    value = Hash.new
+    for i in 5..29
+      value[i]=BigDecimal(Record.where("station_id": i, "parameter_id": parameter_id).average("value")).round(2)
+    end
+    names=Array.new
+    ids = Hash[value.sort_by { |k, v| v }[0..2]].keys
+    ids.each do|j|
+      names.append(Station.find(j).name)
+    end
+    names
+  end
+
+
+
+
+
+
 
 end

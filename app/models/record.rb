@@ -13,8 +13,8 @@ class Record < ApplicationRecord
     end
   end
 
-    def get_values_average(parameter_id)
-      BigDecimal(Record.all.where("parameter_id": parameter_id).average("value")).round(2)
+  def get_values_average(parameter_id)
+    BigDecimal(Record.all.where("parameter_id": parameter_id).average("value")).round(2)
   end
 
   def get_value_min(parameter_id)
@@ -24,6 +24,7 @@ class Record < ApplicationRecord
   def get_value_max(parameter_id)
     BigDecimal(Record.all.where("parameter_id": parameter_id).maximum("value")).round(2)
   end
+
 
 end
 

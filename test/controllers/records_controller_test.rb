@@ -23,7 +23,7 @@ class RecordsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to record_url(Record.last)
   end
 
-  test "should show record" do
+  test "should fun record" do
     get record_url(@record)
     assert_response :success
   end

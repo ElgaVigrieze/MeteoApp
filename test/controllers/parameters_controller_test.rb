@@ -23,7 +23,7 @@ class ParametersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to parameter_url(Parameter.last)
   end
 
-  test "should show parameter" do
+  test "should fun parameter" do
     get parameter_url(@parameter)
     assert_response :success
   end

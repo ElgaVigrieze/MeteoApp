@@ -1,26 +1,100 @@
-<%# <script src="the-downloaded-jquery-file.js">
-<script src="you-file.js"> %>
- 
- <h1><%=  @parameter.name %></h1>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+ <script>
+     google.charts.load('current',{packages:['corechart']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function myFunction() {
+         var input, filter, table, tr, th, i, txtValue;
+         input = document.getElementById("myInput");
+         filter = input.value.toUpperCase();
+         table = document.getElementById("myTable");
+         tr = table.getElementsByTagName("tr");
+
+         for (i = 1; i < tr.length; i++) {
+             th = tr[i].getElementsByTagName("th")[0];
+             if (th) {
+                 txtValue = th.textContent || th.innerText;
+                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                     tr[i].style.display = "";
+                 } else {
+                     tr[i].style.display = "none";
+                 }
+             }
+         }
+     }
+
+     function drawChart() {
+         // Create and populate the data table.
+         var months =  <%= @months.to_json.html_safe %>;
+         var values = <%= @values %>;
 
 
- <%= form_with url: url_for(:controller => "parameters", :action => "search"), method: :post, :remote => true,:format => :js, 
- html: {} do |form|  %>
 
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'months');
+         data.addColumn('number', "average values");
 
-     <h3>Filter by observation station</h3>
-     <%= form.select "station", options_from_collection_for_select(Station.all, :id, :name), {},  { :multiple => true }%>
+         for(i = 0; i < months.length; i++)
+             data.addRow([months[i], values[i]]);
+         // Create and draw the visualization.-->-->-->-->
+         new google.visualization.LineChart(document.getElementById('myChart')).
+         draw(data, {});
+     }
+ </script>
 
-  <div class="btn"><%= form.submit %></div>
-   <% end %>
+<h1><%=  @parameter.name + ", measured in "+ @parameter.measuring_unit%></h1>
 
-   <div id="data" class="data" > </div>
+<%= link_to 'Back', parameters_path %>
 
+<div style="width:100%;overflow: hidden;">
 
-
-<div class="data">
-<%= render :partial => 'search' %>
+    <div style="width:50%;float: left;">
+      <div id="myChart" style="max-width:700px; height:400px"></div>
+    </div>
+  <div style="width:50%;float: right;">
+      <%= render 'list'%>
+    </div>
 </div>
+
+      <details>
+        <summary>
+          <h3 >See detailed data per station</h3>
+        </summary>
+        <input class="search"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for stations..">
+
+        <table class="content-table" id = "myTable">
+          <tr>
+            <td></td>
+            <% @months.each do |m| %>
+              <th scope="col"><%= m %></th>
+            <% end %>
+            <th scope="col">Average</th>
+            <th scope="col">Min</th>
+            <th scope="col">Max</th>
+
+          </tr>
+          <% @stations.each do |s| %>
+            <tr>
+              <th scope="row"><%= s.name %></th>
+              <% @months_n.each do |m| %>
+                <td> <%= s.get_values(m,params[:id],s.id) %> </td>
+              <% end %>
+              <td> <%= s.get_values_average_per_station(params[:id],s.id) %> </td>
+              <td> <%= s.get_value_min_per_station(params[:id],s.id) %> </td>
+              <td> <%= s.get_value_max_per_station(params[:id],s.id) %> </td>
+          <% end %>
+          </tr>
+
+        </table>
+      </details>
+
+
+
+
+
+
+
+
 
 
 
