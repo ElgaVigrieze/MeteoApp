@@ -16,6 +16,15 @@ class ParametersController < ApplicationController
     @values = get_all_values(@parameter.id)
   end
 
+  def show2
+    @parameters = Parameter.all
+    @stations = Station.all
+    @parameter = Parameter.find(params[:id])
+    @months = Date::ABBR_MONTHNAMES.drop(1)
+    @months_n = (1..12).to_a
+
+  end
+
   # GET /parameters/new
   def new
     @parameter = Parameter.new

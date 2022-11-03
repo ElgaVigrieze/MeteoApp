@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   resources :parameters
   resources :stations
 
-
-  post '/overview', to: 'records#search'
-  post '/parameters/:id', to: 'parameters#search'
+  root to: "records#index"
   get '/fun', to: 'records#fun'
   get '/overview', to: 'records#overview'
-  root to: "records#index"
+  get '/parameters/:id/show' => 'parameters#show2', :as => :parameter_show_path
+
 
 
 
