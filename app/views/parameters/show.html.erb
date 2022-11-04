@@ -16,7 +16,7 @@
 
          for(i = 0; i < months.length; i++)
              data.addRow([months[i], values[i]]);
-         // Create and draw the visualization.-->-->-->-->
+        
          new google.visualization.LineChart(document.getElementById('myChart')).
          draw(data, {});
      }
@@ -24,8 +24,8 @@
 
 <h1><%=  @parameter.name + ", measured in "+ @parameter.measuring_unit%></h1>
 
-<%= link_to 'Back', parameters_path %>
-<%= link_to 'See data per station', parameter_show_path_path %>
+<%= link_to 'Back', parameters_path, class:"link"%>
+<%= link_to 'See data per station', parameter_show_path_path, class:"link" %>
 
 <div style="width:100%;overflow: hidden;">
 
@@ -36,16 +36,3 @@
       <%= render 'list'%>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
