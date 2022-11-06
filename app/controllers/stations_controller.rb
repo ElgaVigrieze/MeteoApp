@@ -4,20 +4,14 @@ class StationsController < ApplicationController
   # GET /stations or /stations.json
   def index
     @stations = Station.all
-
   end
 
   # GET /stations/1 or /stations/1.json
   def show
-    @stations = Station.all
-    @months = Date::ABBR_MONTHNAMES.drop(1)
-
-
   end
 
   # GET /stations/new
   def new
-    @station = Station.new
   end
 
   # GET /stations/1/edit
@@ -55,7 +49,6 @@ class StationsController < ApplicationController
   # DELETE /stations/1 or /stations/1.json
   def destroy
     @station.destroy
-
     respond_to do |format|
       format.html { redirect_to stations_url, notice: "Station was successfully destroyed." }
       format.json { head :no_content }

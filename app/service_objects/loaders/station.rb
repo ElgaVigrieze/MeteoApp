@@ -13,8 +13,9 @@ module Loaders
 def save_records
   csv_content.each do |line|
     station = ::Station.find_or_initialize_by(
-    name: line[1],
-    code: line[0]) 
+      name: line[1],
+      code: line[0]
+  )
     station.save!
   end
 end

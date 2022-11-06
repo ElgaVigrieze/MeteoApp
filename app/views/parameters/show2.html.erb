@@ -42,11 +42,11 @@
             <tr>
               <th scope="row"><%= s.name %></th>
               <% @months_n.each do |m| %>
-                <td> <%= s.get_values(m,params[:id],s.id) %> </td>
+                <td> <%= s.get_values(m,@parameter,s.id) %> </td>
               <% end %>
-              <td> <%= s.get_values_average_per_station(params[:id],s.id) %> </td>
-              <td> <%= s.get_value_min_per_station(params[:id],s.id) %> </td>
-              <td> <%= s.get_value_max_per_station(params[:id],s.id) %> </td>
+              <td> <%= s.get_values_average_per_station(@parameter,s.id) %> </td>
+              <td> <%= s.get_value_min_per_station(@parameter,s.id) %> </td>
+              <td> <%= s.get_value_max_per_station(@parameter,s.id) %> </td>
           <% end %>
           </tr>
 

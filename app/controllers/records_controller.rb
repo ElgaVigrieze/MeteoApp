@@ -7,36 +7,24 @@ class RecordsController < ApplicationController
   end
 
   def overview
-    @records = Record.all
-    @parameters = Parameter.all
     @months = Date::ABBR_MONTHNAMES.drop(1)
     @months_n = (1..12).to_a
-
-  end
-
-  def search
-     par = params[:parameter].reject!(&:empty?)
-     @parameters = Parameter.where("id": par)
-     @months = Date::ABBR_MONTHNAMES.drop(1)
-     @months_n = (1..12).to_a
+    @parameters = Parameter.all
   end
 
 
   # GET /records/1 or /records/1.json
   def fun
-    @warm = find_top(9)
-    @rainy = find_top(3)
-    @windy = find_top(5)
-    @snowy = find_top(8)
-    @humid = find_top(7)
-    @pressure = find_top(6)
-    @cold = find_bottom(9)
-    @dry= find_bottom(3)
-    @less_pressure = find_bottom(6)
-
-
+    @warm = Record.new.find_top(9)
+    @rainy = Record.new.find_top(3)
+    @windy = Record.new.find_top(5)
+    @snowy = Record.new.find_top(8)
+    @humid = Record.new.find_top(7)
+    @pressure = Record.new.find_top(6)
+    @cold = Record.new.find_bottom(9)
+    @dry= Record.new.find_bottom(3)
+    @less_pressure = Record.new.find_bottom(6)
   end
-
 
 
   # GET /records/new
@@ -77,20 +65,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def get_values(month,parameter_id)
-    data = Record.where("parameter_id": parameter_id).where('EXTRACT(MONTH FROM time) = ?', month)
-    count = data.count
-    value_sum = data.sum(:value)
-    if count ==0
-      "n/a"
-    else
-      BigDecimal(value_sum/count).round(2)
-    end
-  end
-
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_record
@@ -101,38 +75,5 @@ class RecordsController < ApplicationController
     def record_params
       params.require(:record).permit(:station_id, :parameter_id, :time, :value)
     end
-
-
-  def find_top(parameter_id)
-    value = Hash.new
-    for i in 5..29
-      value[i]=BigDecimal(Record.where("station_id": i, "parameter_id": parameter_id).average("value")).round(2)
-    end
-    names=Array.new
-    ids = Hash[value.sort_by { |k, v| -v }[0..2]].keys
-    ids.each do|j|
-      names.append(Station.find(j).name)
-    end
-    names
-  end
-
-  def find_bottom(parameter_id)
-    value = Hash.new
-    for i in 5..29
-      value[i]=BigDecimal(Record.where("station_id": i, "parameter_id": parameter_id).average("value")).round(2)
-    end
-    names=Array.new
-    ids = Hash[value.sort_by { |k, v| v }[0..2]].keys
-    ids.each do|j|
-      names.append(Station.find(j).name)
-    end
-    names
-  end
-
-
-
-
-
-
 
 end

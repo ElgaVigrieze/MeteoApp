@@ -9,11 +9,10 @@ class ParametersController < ApplicationController
   # GET /parameters/1 or /parameters/1.json
   def show
     @parameters = Parameter.all
-    @stations = Station.all
     @parameter = Parameter.find(params[:id])
     @months = Date::ABBR_MONTHNAMES.drop(1)
     @months_n = (1..12).to_a
-    @values = get_all_values(@parameter.id)
+    @values = Record.new.get_all_values(@parameter.id)
   end
 
   def show2
@@ -22,7 +21,6 @@ class ParametersController < ApplicationController
     @parameter = Parameter.find(params[:id])
     @months = Date::ABBR_MONTHNAMES.drop(1)
     @months_n = (1..12).to_a
-
   end
 
   # GET /parameters/new
@@ -85,24 +83,6 @@ class ParametersController < ApplicationController
       params.require(:parameter).permit(:name, :measuring_unit, :code)
     end
 
-  def get_all_values(parameter_id)
-    values=Array.new
-    (1..12).each do |i|
-      values.append(get_values(i, parameter_id))
-    end
-    values.delete("n/a")
-    values
-  end
 
-  def get_values(month,parameter_id)
-    data = Record.where("parameter_id": parameter_id).where('EXTRACT(MONTH FROM time) = ?', month)
-    count = data.count
-    value_sum = data.sum(:value)
-    if count ==0
-      "n/a"
-    else
-      BigDecimal(value_sum/count).round(2)
-    end
-  end
 
 end

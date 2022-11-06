@@ -26,9 +26,7 @@ module Loaders
 
     def load!
       ActiveRecord::Base.transaction do
-        binding.pry
         delete_records
-        binding.pry
         save_records
       end
 

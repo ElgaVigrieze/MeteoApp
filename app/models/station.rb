@@ -1,13 +1,9 @@
 class Station < ApplicationRecord
 
     def get_values(month,parameter_id,station_id)
-        data = Record.where("parameter_id": parameter_id).where('EXTRACT(MONTH FROM time) = ?', month).where("station_id": station_id)
-        count = data.count
-        value_sum = data.sum(:value)
-        if count ==0
-          "n/a"
-        else
-          BigDecimal(value_sum/count).round(2)
+        data = Record.where("parameter_id": parameter_id).where('EXTRACT(MONTH FROM time) = ?', month).where("station_id": station_id).average("value")
+        if data != nil
+          BigDecimal(data).round(2)
         end
       end
     
